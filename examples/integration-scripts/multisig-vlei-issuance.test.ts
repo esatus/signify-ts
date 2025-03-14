@@ -1,27 +1,13 @@
 import { strict as assert } from 'assert';
 import signify, {
-    Saider,
-    CredentialSubject,
-    CredentialData,
     CreateIdentiferArgs,
-    randomNonce,
-    Salter,
+    CredentialData,
+    CredentialSubject,
     HabState,
+    randomNonce,
+    Saider,
+    Salter,
 } from 'signify-ts';
-import { resolveEnvironment } from './utils/resolve-env';
-import {
-    resolveOobi,
-    waitOperation,
-    getOrCreateAID,
-    getOrCreateClients,
-    getOrCreateContact,
-    createTimestamp,
-    getIssuedCredential,
-    getReceivedCredential,
-    waitForCredential,
-    admitSinglesig,
-    waitAndMarkNotification,
-} from './utils/test-util';
 import {
     addEndRoleMultisig,
     admitMultisig,
@@ -31,6 +17,20 @@ import {
     grantMultisig,
     issueCredentialMultisig,
 } from './utils/multisig-utils';
+import { resolveEnvironment } from './utils/resolve-env';
+import {
+    admitSinglesig,
+    createTimestamp,
+    getIssuedCredential,
+    getOrCreateAID,
+    getOrCreateClients,
+    getOrCreateContact,
+    getReceivedCredential,
+    resolveOobi,
+    waitAndMarkNotification,
+    waitForCredential,
+    waitOperation,
+} from './utils/test-util';
 
 const { vleiServerUrl, witnessIds } = resolveEnvironment();
 
@@ -289,6 +289,7 @@ test('multisig-vlei-issuance', async function run() {
 
     // QARs, LARs, ECR resolve GEDA's OOBI
     const oobiGEDA = oobiGEDAbyGAR1.oobis[0].split('/agent/')[0];
+    console.log("OOBI GEDA Controller: " + oobiGEDA+"/controller");
     await Promise.all([
         getOrCreateContact(clientQAR1, aidGEDA.name, oobiGEDA),
         getOrCreateContact(clientQAR2, aidGEDA.name, oobiGEDA),
