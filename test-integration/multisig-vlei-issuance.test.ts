@@ -289,6 +289,7 @@ test('multisig-vlei-issuance', async function run() {
 
     // QARs, LARs, ECR resolve GEDA's OOBI
     const oobiGEDA = oobiGEDAbyGAR1.oobis[0].split('/agent/')[0];
+    console.log("OOBI GEDA Controller: " + oobiGEDA+"/controller");
     await Promise.all([
         getOrCreateContact(clientQAR1, aidGEDA.name, oobiGEDA),
         getOrCreateContact(clientQAR2, aidGEDA.name, oobiGEDA),
