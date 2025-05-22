@@ -1,27 +1,13 @@
-import { assert, test } from 'vitest';
 import signify, {
-    Saider,
-    CredentialSubject,
-    CredentialData,
     CreateIdentiferArgs,
-    randomNonce,
-    Salter,
+    CredentialData,
+    CredentialSubject,
     HabState,
+    randomNonce,
+    Saider,
+    Salter,
 } from 'signify-ts';
-import { resolveEnvironment } from './utils/resolve-env.ts';
-import {
-    resolveOobi,
-    waitOperation,
-    getOrCreateAID,
-    getOrCreateClients,
-    getOrCreateContact,
-    createTimestamp,
-    getIssuedCredential,
-    getReceivedCredential,
-    waitForCredential,
-    admitSinglesig,
-    waitAndMarkNotification,
-} from './utils/test-util.ts';
+import { assert, test } from 'vitest';
 import {
     addEndRoleMultisig,
     admitMultisig,
@@ -31,6 +17,20 @@ import {
     grantMultisig,
     issueCredentialMultisig,
 } from './utils/multisig-utils.ts';
+import { resolveEnvironment } from './utils/resolve-env.ts';
+import {
+    admitSinglesig,
+    createTimestamp,
+    getIssuedCredential,
+    getOrCreateAID,
+    getOrCreateClients,
+    getOrCreateContact,
+    getReceivedCredential,
+    resolveOobi,
+    waitAndMarkNotification,
+    waitForCredential,
+    waitOperation,
+} from './utils/test-util.ts';
 
 const { vleiServerUrl, witnessIds } = resolveEnvironment();
 
